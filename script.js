@@ -1,26 +1,37 @@
-var eventObj;
-var first_y;
+function Event(title, start_time, end_time, weekday) {
 
-$(".event").mousedown(function(e) {
-    eventObj = $(this);
-    first_y = e.pageY - eventObj.offset().top;
-});
+    this.title = title;
+    this.start_time = start_time;
+    this.end_time = end_time;
+    this.weekday = weekday;
+    var obj = this;
+
+    this.element = $("<div></div>").addClass("event").html(title)
+        .mousedown(function(e) {
+            eventElement = $(this);
+            eventElement.eventObj = obj;
+            eventElement.first_y = e.pageY - eventElement.offset().top;
+        })
+        .appendTo($("#weekday-" + weekday));
+}
+
+var eventElement;
 
 $(document).mousemove(function(e) {
-    if (eventObj != undefined) {
-        var weekdayDiv = $("#weekday-1");
+    if (eventElement != undefined) {
+        var weekdayDiv = $("#weekday-" + eventElement.eventObj.weekday);
         var title = weekdayDiv.find(".weekday-title");
 
         var lowerBound = title.offset().top + title.height();
-        var upperBound = weekdayDiv.offset().top + weekdayDiv.height() - eventObj.height();
+        var upperBound = weekdayDiv.offset().top + weekdayDiv.height() - eventElement.height();
 
-        var new_Y = e.pageY - first_y;
+        var new_Y = e.pageY - eventElement.first_y;
 
         if (new_Y > lowerBound && new_Y < upperBound) {
-            eventObj.css("top", new_Y + "px");
-            //eventObj.css("left", e.pageX + "px");
+            eventElement.css("top", new_Y + "px");
+            //eventElement.css("left", e.pageX + "px");
         }
     }
 }).mouseup(function() {
-    eventObj = undefined;
+    eventElement = undefined;
 });

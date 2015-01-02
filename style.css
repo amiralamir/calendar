@@ -30,7 +30,6 @@ body {
     position: absolute;
     color: white;
     background-color: crimson;
-    height: 100px;
     width: 180px;
     cursor: move;
     box-sizing: border-box;
