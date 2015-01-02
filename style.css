@@ -14,6 +14,7 @@ body {
     width: 180px;
     float: left;
     height: 1200px;
+    position: relative;
 }
 
 .weekday-title {
