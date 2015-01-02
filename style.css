@@ -1,0 +1,16 @@
+.weekday
+{
+    border: 1px dashed black;
+    width: 180px;
+    float: left;
+    height: 1200px;
+}
+
+.weekday-title {
+    font-weight: bold;
+    text-align: center;
+}
+
+.weekday-events {
+
+}
